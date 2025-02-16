@@ -1,0 +1,39 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 50px;
+}
+
+.link:hover {
+  color: #800080FF;
+}
+
+.articlesWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.articleWrapper {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.deleteButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    color: #800080FF;
+  }
+}
+
+.editLink {
+  margin-bottom: 15px;
+
+  &:hover {
+    color: #800080FF;
+  }
+}

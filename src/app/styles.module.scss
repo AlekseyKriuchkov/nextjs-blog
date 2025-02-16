@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.link {
+  padding: 5px 10px;
+  border: 1px solid #800080FF;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #800080FF;
+    color: #0a0a0a;
+  }
+}
