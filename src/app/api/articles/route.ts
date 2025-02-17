@@ -14,17 +14,23 @@ export const GET = async (req: Request) => {
     if (article) {
       return NextResponse.json(article);
     }
-    return NextResponse.json({ message: 'Article not found' }, { status: 404 });
+    return NextResponse.json({ message: 'Articles not found' });
   }
 
   const articles = await getArticles();
-  return NextResponse.json(articles);
+  if (articles) {
+    return NextResponse.json(articles);
+  }
+  return []
 }
 
 export const POST = async (req: Request) => {
   const article: Omit<Article, 'id'> = await req.json();
-  await createArticle(article);
-  return NextResponse.json({ message: 'Article created' }, { status: 201 });
+  const createdArticle = await createArticle(article);
+  if (createdArticle) {
+    return NextResponse.json(createdArticle);
+  }
+  return NextResponse.json({ message: 'Article not created' });
 }
 
 export const PUT = async (req: Request) => {
@@ -33,7 +39,7 @@ export const PUT = async (req: Request) => {
   const updated = await updateArticle(updatedArticle.id, updatedArticle);
 
   if (updated) {
-    return NextResponse.json({ message: 'Article updated successfully' });
+    return NextResponse.json(updated);
   }
 
   return NextResponse.json({ message: 'Article not found' }, { status: 404 });
@@ -79,6 +85,7 @@ const createArticle = async (article: Omit<Article, 'id'>)=> {
 
   try {
     await fs.writeFile(filePath, JSON.stringify(updatedArticles));
+    return newArticle;
   } catch (error) {
     console.error('Ошибка записи данных в файл:', error);
   }
