@@ -21,14 +21,14 @@ export const Articles = () => {
 
   const handleDelete = async (id: string) => {
     const res = await articleApi.deleteArticle(id);
-    console.log(res)
 
     if (res) {
       setArticles(articles.filter((article) => article.id !== id));
     } else {
-      alert('Не удалось удалить статью');
+      console.error('Failed to delete article');
     }
   };
+
   return (
     <>
       {articles.map((article) => (

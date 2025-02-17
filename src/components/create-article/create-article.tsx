@@ -8,13 +8,13 @@ import {articleApi} from "@/services/article-services";
 export const CreateArticle = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setLoading(true);
+    setIsLoading(true);
 
     const newArticle = { title, content };
 
@@ -26,7 +26,7 @@ export const CreateArticle = () => {
     } catch (error) {
       console.error('Error:', error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -51,8 +51,8 @@ export const CreateArticle = () => {
           required
         />
       </div>
-      <button type="submit" disabled={loading}>
-        {loading ? 'Создаю...' : 'Создать'}
+      <button type="submit" disabled={isLoading}>
+        {isLoading ? 'Создаю...' : 'Создать'}
       </button>
     </form>
   );

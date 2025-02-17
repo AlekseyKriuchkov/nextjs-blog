@@ -67,7 +67,7 @@ const getArticles = async (): Promise<Article[]> => {
     const data = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
-    console.error('Ошибка чтения данных из файла:', error);
+    console.error('Error reading data:', error);
     return [];
   }
 }
@@ -87,7 +87,7 @@ const createArticle = async (article: Omit<Article, 'id'>)=> {
     await fs.writeFile(filePath, JSON.stringify(updatedArticles));
     return newArticle;
   } catch (error) {
-    console.error('Ошибка записи данных в файл:', error);
+    console.error('Error writing data:', error);
   }
 }
 
@@ -102,7 +102,7 @@ const updateArticle = async (id: string, updatedData: Article) => {
       await fs.writeFile(filePath, JSON.stringify(articles));
       return articles[index];
     } catch (error) {
-      console.error('Ошибка записи данных в файл:', error);
+      console.error('Error writing data:', error);
       return null;
     }
   }
@@ -120,7 +120,7 @@ const deleteArticle = async (id: string)=> {
       await fs.writeFile(filePath, JSON.stringify(articles));
       return true;
     } catch (error) {
-      console.error('Ошибка записи данных в файл:', error);
+      console.error('Error writing data:', error);
     }
   }
   return false;

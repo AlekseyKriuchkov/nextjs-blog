@@ -8,7 +8,7 @@ class ArticleService extends BaseFetcher {
       const data: Article[] = await this.request({endpoint: '/articles'});
       return data
     } catch (error) {
-      console.error('Error reading data from file:', error);
+      console.error('Error reading data:', error);
       return [];
     }
   }
@@ -23,7 +23,7 @@ class ArticleService extends BaseFetcher {
       const newArticle = { id: String(Date.now()), ...article };
       return await this.request({method: 'POST', options: {body: newArticle}, endpoint: '/articles'});
     } catch (error) {
-      console.error('Ошибка записи данных в файл:', error);
+      console.error('Error writing data:', error);
     }
     return null
   }

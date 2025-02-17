@@ -19,15 +19,14 @@ export const EditArticle = () => {
     if (!id) return;
 
     const fetchArticle = async () => {
-      const res = await fetch(`/api/articles?id=${id}`);
-      const data = await res.json();
+      const data = await articleApi.getArticleById(id.toString());
 
-      if (data && data.id) {
+      if (data) {
         setArticle(data);
         setTitle(data.title);
         setContent(data.content);
       } else {
-        console.error('Статья не найдена');
+        console.error('Article not found');
       }
     };
     fetchArticle();
@@ -36,7 +35,7 @@ export const EditArticle = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!article?.id) {
-      console.error("ID статьи не найден");
+      console.error("Article ID not found");
       return;
     }
 
@@ -51,10 +50,10 @@ export const EditArticle = () => {
       if (res) {
         router.push('/articles');
       } else {
-        console.error('Ошибка при создании статьи');
+        console.error('Error creating article');
       }
     } catch (error) {
-      console.error('Ошибка:', error);
+      console.error('Error:', error);
     }
   };
 

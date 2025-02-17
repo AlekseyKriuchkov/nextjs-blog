@@ -16,12 +16,11 @@ export const Article = () => {
 
     const fetchArticle = async () => {
       const data = await articleApi.getArticleById(id.toString());
-
       if (data) {
         setTitle(data.title);
         setContent(data.content);
       } else {
-        console.error('Статья не найдена');
+        console.error('Article not found');
       }
     };
     fetchArticle();

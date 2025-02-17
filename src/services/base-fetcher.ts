@@ -28,13 +28,13 @@ export class BaseFetcher {
       });
 
       if (!response.ok) {
-        throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
+        throw new Error(`Error ${response.status}: ${response.statusText}`);
       }
 
       return await response.json();
     } catch (e) {
-      console.error('Ошибка запроса:', e);
-      throw new Error(`Ошибка запроса`);
+      console.error('Request error:', e);
+      throw new Error(`Request error`);
     }
   }
 }
